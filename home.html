@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eco Vision - Sustainable waste management solutions">
+    <title>Eco Vision</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #22577a;  /* A vivid green */
+            --hover-color: #38a3a5;  /* A darker shade of green for hover effects */
+            --button-text-color: #f4f4f9;  /* A light almost white color for text */
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(270deg, #50c878, #4a90e2, #50c878, #4a90e2);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+            color: var(--button-text-color);
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header img {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.3));
+            animation: slideIn 1.5s ease-out;
+        }
+
+        main h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 15px 30px;
+            background-color: var(--primary-color);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--hover-color);
+            transform: scale(1.05);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        footer {
+            padding: 10px 20px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border-radius: 10px;
+            color: var(--button-text-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 3s ease-in-out;
+            margin-top: 20px;
+            position: absolute;
+            bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            main h1 {
+                font-size: 2em;
+            }
+            button {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+            header img {
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="Eco_Vision.png" alt="Eco Vision Logo" class="logo">
+    </header>
+    <main>
+        <h1>Welcome to Eco Vision</h1>
+        <div class="buttons">
+            <button onclick="window.location.href='/status_page';">Check Specific Bin Status</button>
+            <button onclick="window.location.href='/allbins_page';">Check All Bins Status</button>
+            <button onclick="window.location.href='/manage_bins_page';">Manage Bins</button>
+        </div>
+    </main>
+    <footer>
+        Keep your environment clean and green!
+    </footer>
+    <script>
+        window.onload = function() {
+            document.body.style.opacity = '1'; // Show body with fade-in
+        };
+    </script>
+</body>
+</html>

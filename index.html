@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bin Status</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(270deg, #4a90e2, #50c878, #4a90e2, #50c878);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite, fadeInBody 1s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            color: #f4f4ff;
+            overflow: auto;
+            opacity: 1; /* Ensure content is visible */
+            transition: opacity 1s ease-out;
+        }
+        nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #22577a;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    height: 50px;
+    z-index: 100;
+}
+
+nav button {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #22577a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 0 10px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-left: 10px; /* Provides spacing between buttons */
+        }
+        nav img {
+    margin-right: 20px; /* Ensures some space between the logo and the buttons */
+}
+        nav button:hover {
+            background-color: #38a3a5;
+            transform: scale(1.05);
+        }
+        
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeInBody {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4em;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s ease-in-out, bounceIn 2s ease-out;
+        }
+
+        #status {
+            font-size: 2em;
+            margin-top: 20px;
+            padding: 20px 40px;
+            border: 2px solid #FFFDF7;
+            border-radius: 15px;
+            width: 300px;
+            text-align: center;
+            transition: background-color 0.5s, color 0.5s, box-shadow 0.5s, transform 0.5s, opacity 0.5s;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            animation: bounceIn 1s ease-in-out;
+            opacity: 1;
+        }
+
+        .full {
+            background-color: #ff4d4d;
+            color: white;
+            box-shadow: 0 10px 20px rgba(255, 77, 77, 0.6);
+            animation: bounce 1s infinite, glow 1.5s infinite alternate;
+        }
+
+        .empty {
+            background-color: #4caf50;
+            color: white;
+            box-shadow: 0 8px 16px rgba(76, 175, 80, 0.4);
+        }
+
+        .logo {
+    width: 50px;
+    height: auto;
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
+}
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px rgba(255, 77, 77, 0.6); }
+            100% { box-shadow: 0 0 20px rgba(255, 77, 77, 1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 1em;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        select {
+            font-size: 16px;
+            padding: 10px;
+            margin-top: 20px;
+            background: #22577a;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #22577a;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+        .button-container {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1; /* Makes the container take the remaining space, pushing the logo to the left */
+}
+
+        button:hover {
+            background-color: #38a3a5;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="Eco_Vision.png" alt="Logo" class="logo">
+        <div class="button-container">
+            <button onclick="window.location.href='/';">Home</button>
+            <button onclick="window.location.href='/allbins_page';">Check All Bins Status</button>
+            <button onclick="window.location.href='/manage_bins_page';">Manage Bins</button>
+        </div>
+    </nav>
+    <main>
+    <h1>Bin Status</h1>
+    <select id="binLevelSelect"></select>
+    <button onclick="fetchStatus()">Check Status</button>
+    </main>
+    <div id="status" class="empty">Select a bin and click 'Check Status'</div>
+
+    <footer>
+        Keep your environment clean and green!
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            populateBinSelect();
+        });
+
+        async function populateBinSelect() {
+            const binSelect = document.getElementById('binLevelSelect');
+            try {
+                const response = await fetch('/bins');
+                const bins = await response.json();
+                binSelect.innerHTML = ''; // Clear existing options
+                bins.forEach(bin => {
+                    const option = document.createElement('option');
+                    option.value = bin.index;
+                    option.text = bin.name;
+                    binSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error fetching bin data:', error);
+            }
+        }
+
+        async function fetchStatus() {
+            const selectedIndex = document.getElementById('binLevelSelect').value;
+            const statusElement = document.getElementById('status');
+            try {
+                const response = await fetch(`/status`);
+                const data = await response.json();
+                const selectedBinStatus = data.statuses[selectedIndex];
+                if (selectedBinStatus === "full") {
+                    statusElement.innerText = "Bin is full";
+                    statusElement.className = "full";
+                } else if (selectedBinStatus === "empty") {
+                    statusElement.innerText = "Bin is empty";
+                    statusElement.className = "empty";
+                }
+            } catch (error) {
+                statusElement.innerText = "Error fetching status";
+                statusElement.className = "";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Vision - Bin Status</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #22577a;
+            --hover-color: #073f64;
+            --button-text-color: #f4f4f9;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(270deg, #4a90e2, #50c878, #4a90e2, #50c878);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+            color: var(--button-text-color);
+            overflow: auto;
+            transition: opacity 1s ease-out;
+            padding-top: 100px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: #22577a;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            height: 50px;
+            z-index: 100;
+        }
+
+        nav button {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #22577a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 0 10px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-left: 10px; /* Provides spacing between buttons */
+        }
+
+        nav button:hover {
+            background-color: #38a3a5;
+            transform: scale(1.05);
+        }
+
+        nav img {
+            margin-right: 20px; /* Ensures some space between the logo and the buttons */
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeInBody {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+    flex: 1;  /* Makes the container flexible in the available space */
+    margin: 0 10px; /* Adds spacing between categories */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+        .containers {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1200px; /* Adjust this as needed */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+@media (max-width: 600px) {
+    .containers {
+        flex-direction: column;
+    }
+}
+
+        h1 {
+            margin: 20px 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s ease-in-out, bounceIn 2s ease-out;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            margin: 20px 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s ease-in-out, bounceIn 2s ease-out;
+            font-size: 2em;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        li {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin: 10px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+            width: calc(50% - 40px); /* Adjust width for 2-column layout */
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .empty {
+            background-color: #4caf50;
+            color: white;
+            box-shadow: 0 8px 16px rgba(76, 175, 80, 0.4);
+            border: 2px solid #FFFDF7;
+            border-radius: 15px;
+        }
+
+        .full {
+            background-color: #ff4d4d;
+            color: white;
+            animation: bounce 1s infinite;
+            border: 2px solid #FFFDF7;
+            border-radius: 15px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px rgba(255, 77, 77, 0.6); }
+            100% { box-shadow: 0 0 20px rgba(255, 77, 77, 1); }
+        }
+
+        .logo {
+            width: 50px;
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1; /* Makes the container take the remaining space, pushing the logo to the left */
+        }
+
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #5f8b7a;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #7ab45f;
+            transform: scale(1.05);
+        }
+
+        footer {
+            position: relative;
+            bottom: 20px;
+            font-size: 1em;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 3s ease-in-out;
+            margin-top: 20px;
+        }
+
+        .loading {
+            font-size: 1.5em;
+            margin-top: 20px;
+            animation: fadeIn 2s ease-in-out infinite;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            li {
+                padding: 10px;
+                width: calc(100% - 40px); /* Adjust width for single-column layout */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="Eco_Vision.png" alt="Logo" class="logo">
+        <div class="button-container">
+            <button onclick="window.location.href='/';">Home</button>
+            <button onclick="window.location.href='/status_page';">Check Specific Bin Status</button>
+            <button onclick="window.location.href='/manage_bins_page';">Manage Bins</button>
+        </div>
+    </nav>
+    <h2>Full Bins</h2>
+<div class="containers">
+    <div class="container">
+        <h3>General</h3>
+        <ul id="full-GeneralBin" role="list"></ul>
+    </div>
+    <div class="container">
+        <h3>Recycling</h3>
+        <ul id="full-RecyclingBin" role="list"></ul>
+    </div>
+    <div class="container">
+        <h3>Food</h3>
+        <ul id="full-FoodBin" role="list"></ul>
+    </div>
+</div>
+
+<h2>Empty Bins</h2>
+<div class="containers">
+    <div class="container">
+        <h3>General</h3>
+        <ul id="empty-GeneralBin" role="list"></ul>
+    </div>
+    <div class="container">
+        <h3>Recycling</h3>
+        <ul id="empty-RecyclingBin" role="list"></ul>
+    </div>
+    <div class="container">
+        <h3>Food</h3>
+        <ul id="empty-FoodBin" role="list"></ul>
+    </div>
+</div>
+
+    <footer>
+        Keep your environment clean and green!
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fetch the bin status data from the server
+            function fetchBinStatus() {
+                fetch('/status')
+                    .then(response => response.json())
+                    .then(data => {
+                        populateLists(data.statuses, data.names);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching bin status:', error);
+                        alert('Error loading bin data'); // Change to user-friendly error handling
+                    });
+            }
+
+            function populateLists(statuses, names) {
+                const lists = {
+                    'full-GeneralBin': document.getElementById('full-GeneralBin'),
+                    'full-RecyclingBin': document.getElementById('full-RecyclingBin'),
+                    'full-FoodBin': document.getElementById('full-FoodBin'),
+                    'empty-GeneralBin': document.getElementById('empty-GeneralBin'),
+                    'empty-RecyclingBin': document.getElementById('empty-RecyclingBin'),
+                    'empty-FoodBin': document.getElementById('empty-FoodBin')
+                };
+
+                Object.values(lists).forEach(list => {
+                    if (list) list.innerHTML = ''; // Check if list exists before clearing
+                });
+
+                statuses.forEach((status, index) => {
+                    const name = names[index];
+                    // Extract the type based on the naming convention
+                    const typeMatch = name.match(/(GeneralBin|RecyclingBin|FoodBin)/i);
+                    const type = typeMatch ? typeMatch[0] : null;
+                    const listType = `${status.toLowerCase()}-${type}`;
+
+                    const listItem = document.createElement('li');
+                    listItem.innerText = name;
+                    listItem.className = status.toLowerCase(); // Ensure class name is in lowercase
+
+                    if (lists[listType]) {
+                        lists[listType].appendChild(listItem);
+                    }
+                });
+            }
+
+            fetchBinStatus();
+        });
+    </script>
+</body>
+</html>
